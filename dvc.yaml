@@ -1,6 +1,6 @@
 stages:
   mystage:
-    cmd: python train.py
+    cmd: python train.py --no-run-cache
     deps:
     - data
     - train.py
