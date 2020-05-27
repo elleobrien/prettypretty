@@ -20,5 +20,7 @@ jobs:
           dvc --version
           
           
-          
+          pip install -r requirements.txt
+          dvc repro
+          echo "DONE"
         
