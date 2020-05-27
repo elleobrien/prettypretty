@@ -22,5 +22,6 @@ jobs:
           
           pip install -r requirements.txt
           dvc repro
-          echo "DONE"
+          dvc metrics show >> report.md
+          cml-send-github-check report.md
         
