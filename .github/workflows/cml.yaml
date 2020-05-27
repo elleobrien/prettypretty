@@ -25,14 +25,16 @@ jobs:
           
           dvc repro
           dvc metrics diff master --show-md >> report.md
-          echo "\n" >> report.md
+          echo >> report.md
           
+          # FIRST PLOT
           echo "plotting..."
           dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> plots.tmp
           echo "converting to json"
           cat plots.tmp | python to_json.py > vega.json
           echo "converting to png"
           vl2png vega.json | cml-publish --md --title 'my image' >> report.md
+          
           
           cml-send-github-check report.md 
         
