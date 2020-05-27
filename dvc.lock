@@ -1,14 +1,21 @@
 mystage:
-  cmd: python train.py
+  cmd: python train.py --no-run-cache
   deps:
   - path: data
     md5: 2a9e7399e02037c71f2609c951a828fd.dir
   - path: train.py
-    md5: d737f31c26e782155b0120ccc1f65e9b
+    md5: a3f359b0a837334b390e15412968f738
   outs:
   - path: classes.csv
-    md5: c9f2fab4979f8bcfa90d22e254e721b9
+    md5: 3e084e1bdfa49973be450c30779d65eb
   - path: estimators.csv
-    md5: 1e7a95a5aff975b908530c4b4850b3e7
+    md5: 92c302f60d9173749febf622fddb5dff
   - path: metrics.json
-    md5: 7ca5c930e9b945cd40e32081bf3afe44
+    md5: 6542f28cdb8209574c2bea8b45d01a55
+mystage2:
+  cmd: python train.py --no-run-cache
+  deps:
+  - path: data
+    md5: 2a9e7399e02037c71f2609c951a828fd.dir
+  - path: train.py
+    md5: a3f359b0a837334b390e15412968f738
