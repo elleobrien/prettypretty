@@ -1,0 +1,25 @@
+name: train-test
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: cml_run
+        shell: bash
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          apt-get --purge remove -y dvc
+          pip install "git+https://github.com/iterative/dvc#egg=dvc[s3]"
+          dvc -V
+          
+          pip install -r requirements.txt
+          dvc repro
+          dvc metrics diff --show-md >> report.md
+          cml-send-github-check report.md
