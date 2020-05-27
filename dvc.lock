@@ -1,5 +1,5 @@
 mystage:
-  cmd: python train.py --no-run-cache
+  cmd: python train.py
   deps:
   - path: data
     md5: 2a9e7399e02037c71f2609c951a828fd.dir
@@ -12,10 +12,3 @@ mystage:
     md5: 92c302f60d9173749febf622fddb5dff
   - path: metrics.json
     md5: 6542f28cdb8209574c2bea8b45d01a55
-mystage2:
-  cmd: python train.py --no-run-cache
-  deps:
-  - path: data
-    md5: 2a9e7399e02037c71f2609c951a828fd.dir
-  - path: train.py
-    md5: a3f359b0a837334b390e15412968f738
