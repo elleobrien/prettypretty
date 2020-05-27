@@ -4,7 +4,7 @@ mystage:
   - path: data
     md5: 2a9e7399e02037c71f2609c951a828fd.dir
   - path: train.py
-    md5: 5586bb3e6dac770191330e9d223f375b
+    md5: 05f2c6b01c48dab4f7f9828872a30e4a
   outs:
   - path: estimators.csv
-    md5: 15ed991c3e7c8acbb2155b4ab0b94745
+    md5: 752b3a3ae322ba209902eceae8ce77bd
