@@ -20,14 +20,14 @@ jobs:
           dvc --version
           git fetch --prune --unshallow
           
-          echo "HELLO" >> report.md 
+
           pip install -r requirements.txt
           
           dvc repro
           echo "METRICS DIFF HERE: "
-          dvc metrics diff master -v
+          dvc metrics diff master --show-md >> report.md
           
-         # dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
-         # vl2png vega.json | cml-publish --md --title 'my image' >> report.md
-          
+          dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
+          vl2png vega.json | cml-publish --md --title 'my image' >> report.md
+          cml-send-github-check report.md 
         
