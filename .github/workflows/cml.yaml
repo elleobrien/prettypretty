@@ -19,7 +19,9 @@ jobs:
           pip install "git+https://github.com/iterative/dvc#egg=dvc[s3]"
           dvc -V
           
+          dvc metrics show
+          
           pip install -r requirements.txt
           dvc repro
-          dvc metrics diff --show-md >> report.md
+          dvc metrics diff >> report.md
           cml-send-github-check report.md
