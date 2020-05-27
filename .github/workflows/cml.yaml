@@ -17,11 +17,8 @@ jobs:
         run: |
           apt-get --purge remove -y dvc
           pip install "git+https://github.com/iterative/dvc#egg=dvc[s3]"
-          dvc -V
+          dvc --version
           
-          dvc metrics show
           
-          pip install -r requirements.txt
-          dvc repro
-          dvc metrics diff >> report.md
-          cml-send-github-check report.md
+          
+        
