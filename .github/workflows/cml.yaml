@@ -25,7 +25,7 @@ jobs:
           
           dvc repro
           echo "METRICS DIFF HERE: "
-          dvc metrics diff master 
+          dvc metrics diff master -v
           
          # dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
          # vl2png vega.json | cml-publish --md --title 'my image' >> report.md
