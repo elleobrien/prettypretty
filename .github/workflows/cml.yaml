@@ -23,9 +23,8 @@ jobs:
           echo "HELLO" >> report.md 
           pip install -r requirements.txt
           cml-send-github-check report.md
-         #
-         # dvc repro
-         # dvc metrics diff "origin/master" >> report.md
+          dvc repro
+          dvc metrics diff master --show-md >> report.md
           
          # dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
          # vl2png vega.json | cml-publish --md --title 'my image' >> report.md
