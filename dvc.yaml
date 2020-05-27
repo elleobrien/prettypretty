@@ -8,4 +8,5 @@ stages:
     - estimators.csv
     - classes.csv
     metrics:
-    - metrics.json
+    - metrics.json:
+        cache: false
