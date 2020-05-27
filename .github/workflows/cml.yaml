@@ -18,10 +18,13 @@ jobs:
           apt-get --purge remove -y dvc
           pip install "git+https://github.com/iterative/dvc#egg=dvc[s3]"
           dvc --version
-          
+          git fetch --prune --unshallow
           
           pip install -r requirements.txt
           dvc repro
           dvc metrics diff "origin/master" >> report.md
+          
+          dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
+          vl2png vega.json | cml-publish --md --title 'my image' >> report.md
           cml-send-github-check report.md
         
