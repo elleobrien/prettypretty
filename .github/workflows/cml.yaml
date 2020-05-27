@@ -24,8 +24,7 @@ jobs:
           pip install -r requirements.txt
           
           dvc repro
-          dvc metrics diff master --show-md >> report.md
-          cml-send-github-check report.md
+          dvc metrics diff master 
           
          # dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
          # vl2png vega.json | cml-publish --md --title 'my image' >> report.md
