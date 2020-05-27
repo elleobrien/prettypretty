@@ -1,5 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import recall_score, precision_score
+from sklearn.metrics import recall_score, precision_score, roc_auc_score
 import json
 import os
 import numpy as np
@@ -22,18 +22,32 @@ acc = clf.score(X_test, y_test)
 
 # Get precision and recall
 y_score = clf.predict(X_test)
-#prec = precision_score(y_test, y_score)
-#rec = recall_score(y_test,y_score)
-
-
-#with open("metrics.json", 'w') as outfile:
-#        json.dump({ "accuracy": acc, "precision":prec,"recall":rec}, outfile)
+#roc_auc = roc_auc_score(y_test, y_score)
+#print(roc_auc)
 
 # Outs for a confusion matrix
 d = {'actual':y_test, 'predicted':y_score}
 df = pd.DataFrame(d)
 df.to_csv("classes.csv", index=False)
 
-# Outs for an AUC
+# Look at dependence on number of estimators
+min_estimators = 15
+max_estimators = 175
+
+n_estimators = []
+score = []
+
+for i in range(min_estimators, max_estimators +1):
+        clf.set_params(n_estimators=i)
+        clf.fit(X_train,y_train)
+
+        # Recoord the score on the test data
+        test_score = clf.score(X_test,y_test)
+        n_estimators.append(i)
+        score.append(test_score)
+
+out = {'n_estimators':n_estimators,'test score':score}
+df = pd.DataFrame(out)
+df.to_csv("estimators.csv",index=False)
 
 
