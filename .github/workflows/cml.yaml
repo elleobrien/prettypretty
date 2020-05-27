@@ -28,6 +28,10 @@ jobs:
           dvc metrics diff master --show-md >> report.md
           
           dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
-          vl2png vega.json | cml-publish --md --title 'my image' >> report.md
+          
+          echo "PLOT MADE, NOW CONVERT TO PNG"
+          vl2png vega.json 
+          
+          #| cml-publish --md --title 'my image' >> report.md
           cml-send-github-check report.md 
         
