@@ -1,3 +1,2 @@
 sklearn
-Scikit-plot
-matplotlib
+pandas

@@ -1,11 +1,17 @@
 stages:
   mystage:
+<<<<<<< HEAD
     cmd: python train.py --no-run-cache
+=======
+    cmd: python train.py 
+>>>>>>> 616b02707e50ec02a5aa77496fa567a682b0b31e
     deps:
     - data
     - train.py
     plots:
     - estimators.csv
-    - classes.csv
+    - classes.csv:
+        cache: false
     metrics:
-    - metrics.json
+    - metrics.json:
+        cache: false

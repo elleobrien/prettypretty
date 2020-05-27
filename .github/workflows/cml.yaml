@@ -1,0 +1,40 @@
+name: train-test
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: [ubuntu-latest]
+    container: docker://dvcorg/cml-py3:latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: cml_run
+        shell: bash
+        env:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          apt-get --purge remove -y dvc
+          pip install "git+https://github.com/iterative/dvc#egg=dvc[s3]"
+          dvc --version
+          git fetch --prune --unshallow
+          
+
+          pip install -r requirements.txt
+          
+          dvc repro
+          dvc metrics diff master --show-md >> report.md
+          echo >> report.md
+          
+          # FIRST PLOT
+          echo "plotting..."
+          dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-json HEAD HEAD^1 >> plots.tmp
+          echo "converting to json"
+          cat plots.tmp | python to_json.py > vega.json
+          echo "converting to png"
+          vl2png vega.json -s 2 | cml-publish --md --title 'my image' >> report.md
+          
+          
+          cml-send-github-check report.md 
+        
