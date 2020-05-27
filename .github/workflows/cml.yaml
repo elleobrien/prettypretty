@@ -33,7 +33,7 @@ jobs:
           echo "converting to json"
           cat plots.tmp | python to_json.py > vega.json
           echo "converting to png"
-          vl2png vega.json | cml-publish --md --title 'my image' >> report.md
+          vl2png vega.json -s 4 | cml-publish --md --title 'my image' >> report.md
           
           
           cml-send-github-check report.md 
