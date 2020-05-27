@@ -24,15 +24,11 @@ jobs:
           pip install -r requirements.txt
           
           dvc repro
-          ls -l 
-          echo "METRICS DIFF HERE: "
           dvc metrics diff master --show-md >> report.md
           
-          dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
+          dvc plots show classes.csv --template confusion -x actual -y predicted --show-json | python to_json.py >> vega.json
           
           echo "PLOT MADE, NOW CONVERT TO PNG"
-          vl2png vega.json 
-          
-          #| cml-publish --md --title 'my image' >> report.md
+          vl2png vega.json | cml-publish --md --title 'my image' >> report.md
           cml-send-github-check report.md 
         
