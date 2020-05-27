@@ -14,8 +14,7 @@ y_test = np.genfromtxt("data/test_labels.csv")
 
 
 # Fit a model
-depth = 3
-clf = MLPClassifier(hidden_layer_sizes=(200,))
+clf = MLPClassifier(hidden_layer_sizes=(100,))
 clf.fit(X_train,y_train)
 
 # Get overall accuracy
@@ -25,6 +24,9 @@ acc = clf.score(X_test, y_test)
 y_prob = clf.predict_proba(X_test)
 roc_auc = roc_auc_score(y_test, y_prob, multi_class="ovo")
 
+# Write metrics
+with open("metrics.json", 'w') as outfile:
+        json.dump({ "accuracy": acc, "AUC": roc_auc}, outfile)
 
 # Outs for a confusion matrix
 y_pred = clf.predict(X_test)

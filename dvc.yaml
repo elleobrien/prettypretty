@@ -6,3 +6,6 @@ stages:
     - train.py
     plots:
     - estimators.csv
+    - classes.csv
+    metrics:
+    - metrics.json
