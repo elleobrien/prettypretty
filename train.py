@@ -1,4 +1,5 @@
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.neural_network import MLPClassifier
 from sklearn.metrics import recall_score, precision_score, roc_auc_score
 import json
 import os
@@ -14,40 +15,41 @@ y_test = np.genfromtxt("data/test_labels.csv")
 
 # Fit a model
 depth = 3
-clf = RandomForestClassifier(max_depth=depth)
+clf = MLPClassifier(hidden_layer_sizes=(200,))
 clf.fit(X_train,y_train)
 
 # Get overall accuracy
 acc = clf.score(X_test, y_test)
 
-# Get precision and recall
-y_score = clf.predict(X_test)
-#roc_auc = roc_auc_score(y_test, y_score)
-#print(roc_auc)
+# Get AUC
+y_prob = clf.predict_proba(X_test)
+roc_auc = roc_auc_score(y_test, y_prob, multi_class="ovo")
+
 
 # Outs for a confusion matrix
-d = {'actual':y_test, 'predicted':y_score}
+y_pred = clf.predict(X_test)
+d = {'actual':y_test, 'predicted':y_pred}
 df = pd.DataFrame(d)
 df.to_csv("classes.csv", index=False)
 
-# Look at dependence on number of estimators
-min_estimators = 15
-max_estimators = 30
+# Look at dependence on regularizer
+alphas = np.logspace(-5, 3, 5)
 
-n_estimators = []
+regularizer= []
 score = []
 
-for i in range(min_estimators, max_estimators +1):
-        clf.set_params(n_estimators=i)
+for i in alphas:
+        clf.set_params(alpha=i)
         clf.fit(X_train,y_train)
 
         # Recoord the score on the test data
         test_score = clf.score(X_test,y_test)
-        n_estimators.append(i)
+        regularizer.append(i)
         score.append(test_score)
 
-out = {'n_estimators':n_estimators,'test score':score}
+out = {'regularization' :regularizer,'test score':score}
 df = pd.DataFrame(out)
 df.to_csv("estimators.csv",index=False)
+
 
 
