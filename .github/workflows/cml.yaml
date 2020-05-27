@@ -24,6 +24,7 @@ jobs:
           pip install -r requirements.txt
           
           dvc repro
+          echo "METRICS DIFF HERE: "
           dvc metrics diff master 
           
          # dvc plots show classes.csv --template confusion -x actual -y predicted --show-json >> vega.json
