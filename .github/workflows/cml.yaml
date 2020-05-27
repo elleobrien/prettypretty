@@ -24,6 +24,7 @@ jobs:
           pip install -r requirements.txt
           
           dvc repro
+          ls -l 
           echo "METRICS DIFF HERE: "
           dvc metrics diff master --show-md >> report.md
           
