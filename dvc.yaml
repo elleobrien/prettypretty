@@ -1,10 +1,7 @@
 stages:
   mystage:
-<<<<<<< HEAD
-    cmd: python train.py --no-run-cache
-=======
     cmd: python train.py 
->>>>>>> 616b02707e50ec02a5aa77496fa567a682b0b31e
+
     deps:
     - data
     - train.py
