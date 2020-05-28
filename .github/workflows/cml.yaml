@@ -29,7 +29,8 @@ jobs:
           
           # FIRST PLOT
           echo "plotting..."
-          dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-json HEAD >> plots.tmp
+          dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-json HEAD > plots.tmp
+          
           echo "converting to json"
           cat plots.tmp | python to_json.py > vega.json
           echo "converting to png"
