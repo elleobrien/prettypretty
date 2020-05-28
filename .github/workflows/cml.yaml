@@ -24,10 +24,12 @@ jobs:
           pip install -r requirements.txt
           
           dvc repro
+          echo "## Metrics" >> report.md 
           dvc metrics diff master --show-md >> report.md
           echo >> report.md
           
           # FIRST PLOT
+          echo "## Plots" >> report.md
           echo "plotting..."
           dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-json HEAD > plots.tmp
           
@@ -36,6 +38,11 @@ jobs:
           echo "converting to png"
           vl2png vega.json -s 2 | cml-publish --md --title 'my image' >> report.md
           
+          # SECOND PLOT
+          dvc plots diff --target estimators.csv --show-json HEAD > plots.tmp
+          cat plots.tmp | python to_json.py > vega.json
+          vl2png vega.json -s 2 | cml-publish --md --title 'my 2nd image' >> report.md
+        
           
           cml-send-github-check report.md 
         
