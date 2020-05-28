@@ -14,15 +14,17 @@ y_test = np.genfromtxt("data/test_labels.csv")
 
 
 # Fit a model
-clf = MLPClassifier(hidden_layer_sizes=(10,))
+clf = MLPClassifier(hidden_layer_sizes=(5,))
 clf.fit(X_train,y_train)
 
 # Get overall accuracy
 acc = clf.score(X_test, y_test)
+acc = round(acc, 3)
 
 # Get AUC
 y_prob = clf.predict_proba(X_test)
 roc_auc = roc_auc_score(y_test, y_prob, multi_class="ovo")
+roc_auc = round(roc_auc,3)
 
 # Write metrics
 with open("metrics.json", 'w') as outfile:

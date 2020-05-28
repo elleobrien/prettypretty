@@ -1,12 +1,14 @@
 stages:
   mystage:
-    cmd: python train.py
+    cmd: python train.py 
     deps:
     - data
     - train.py
     plots:
     - estimators.csv
-    - classes.csv
+    - classes.csv:
+        cache: false
     metrics:
     - metrics.json:
         cache: false
+

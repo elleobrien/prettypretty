@@ -4,14 +4,14 @@ mystage:
   - path: data
     md5: 2a9e7399e02037c71f2609c951a828fd.dir
   - path: train.py
-    md5: b722461cbf8db81724b704f91b5a08e6
+    md5: d96371f80c4d6589a33a144cfb28fdb4
   outs:
   - path: classes.csv
-    md5: 7d7e6d6a79eed7af542efe1306a37e81
+    md5: 42f11c6533a4afde8dc80cdc7ecc993b
   - path: estimators.csv
-    md5: 6955a92e9552a93a280b998ce84323c7
+    md5: 7e3704fa902a9e3425ecee68b779e713
   - path: metrics.json
-    md5: 30ea5f04a8f845de12bd9016af0613bb
+    md5: 292555d48fe78e80ba92010a96c39768
 mystage2:
   cmd: python train.py
   deps:
