@@ -5,7 +5,8 @@ stages:
     - data
     - train.py
     plots:
-    - estimators.csv
+    - estimators.csv:
+        cache: false
     - classes.csv:
         cache: false
     metrics:
