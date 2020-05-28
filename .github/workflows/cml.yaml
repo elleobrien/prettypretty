@@ -42,5 +42,5 @@ jobs:
           vl2png vega.json -s 1.5 | cml-publish --md --title 'my 2nd image' >> report.md
         
           
-          cml-send-github-check report.md 
+          cml-send-comment report.md 
         
