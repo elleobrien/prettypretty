@@ -30,6 +30,7 @@ jobs:
           
           # FIRST PLOT
           echo "## Plots" >> report.md
+          echo "### Class confusions" >> report.md
           echo "plotting..."
           dvc plots diff --target classes.csv --template confusion -x actual -y predicted --show-json HEAD > plots.tmp
           
@@ -39,6 +40,7 @@ jobs:
           vl2png vega.json -s 1.5 | cml-publish --md --title 'my image' >> report.md
           
           # SECOND PLOT
+          echo "### Effects of regularization" >> report.md
           dvc plots diff --target estimators.csv -x Regularization --show-json HEAD > plots.tmp
           cat plots.tmp | python to_json.py > vega.json
           vl2png vega.json -s 1.5 | cml-publish --md --title 'my 2nd image' >> report.md
