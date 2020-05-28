@@ -36,4 +36,22 @@ d = {'actual':y_test, 'predicted':y_pred}
 df = pd.DataFrame(d)
 df.to_csv("classes.csv", index=False)
 
+# Look at dependence on regularizer
+alphas = np.logspace(-5, 3, 5)
+
+regularizer= []
+score = []
+
+for i in alphas:
+        clf.set_params(alpha=i)
+        clf.fit(X_train,y_train)
+
+        # Recoord the score on the test data
+        test_score = clf.score(X_test,y_test)
+        regularizer.append(i)
+        score.append(test_score)
+
+out = {'regularization' :regularizer,'test score':score}
+df = pd.DataFrame(out)
+df.to_csv("estimators.csv",index=False)
 
