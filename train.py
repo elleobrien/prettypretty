@@ -14,7 +14,7 @@ y_test = np.genfromtxt("data/test_labels.csv")
 
 
 # Fit a model
-clf = MLPClassifier(hidden_layer_sizes=(100,100))
+clf = MLPClassifier(hidden_layer_sizes=(100,100),max_iter=1000)
 clf.fit(X_train,y_train)
 
 # Get overall accuracy
