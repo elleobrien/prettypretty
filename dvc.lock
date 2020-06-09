@@ -11,15 +11,4 @@ mystage:
   - path: estimators.csv
     md5: 757e3b54f07d34e781aa0a4e65d9a6cb
   - path: metrics.json
-<<<<<<< HEAD
-    md5: 34ef538e32157d1675da176ac67b8113
-mystage2:
-  cmd: python train.py
-  deps:
-  - path: data
-    md5: 2a9e7399e02037c71f2609c951a828fd.dir
-  - path: train.py
-    md5: cb26394fe520345290b9ff5134020d7e
-=======
     md5: 6542f28cdb8209574c2bea8b45d01a55
->>>>>>> fa49eae3b8c38e78f88c0708fddc83fa97caa628
