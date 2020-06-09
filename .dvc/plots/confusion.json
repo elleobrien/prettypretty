@@ -10,13 +10,13 @@
             "field": "<DVC_METRIC_X>",
             "type": "nominal",
             "sort": "ascending",
-            "title": "<DVC_METRIC_X_TITLE>"
+            "title": "<DVC_METRIC_X_LABEL>"
         },
         "y": {
             "field": "<DVC_METRIC_Y>",
             "type": "nominal",
             "sort": "ascending",
-            "title": "<DVC_METRIC_Y_TITLE>"
+            "title": "<DVC_METRIC_Y_LABEL>"
         },
         "color": {
             "aggregate": "count",
