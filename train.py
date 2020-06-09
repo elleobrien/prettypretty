@@ -14,7 +14,7 @@ y_test = np.genfromtxt("data/test_labels.csv")
 
 
 # Fit a model
-clf = MLPClassifier(hidden_layer_sizes=(50,50),learning_rate_init=0.002)
+clf = MLPClassifier(hidden_layer_sizes=(100,),learning_rate_init=0.002)
 clf.fit(X_train,y_train)
 
 # Get overall accuracy
@@ -51,7 +51,7 @@ for i in alphas:
         regularizer.append(np.log10(i))
         score.append(test_score)
 
-out = {'Regularization' :regularizer,'Test Accuracy':score}
+out = {'Regularization' :regularizer,'Test_Accuracy':score}
 df = pd.DataFrame(out)
 df.to_csv("estimators.csv",index=False)
 

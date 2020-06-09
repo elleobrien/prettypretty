@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DVC Plot</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.10.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.8.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.5.1"></script>
+</head>
+<body>
+    <div id = "plot0"></div>
+<script type = "text/javascript">
+    var spec = {
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "data": {
+        "values": [
+    {
+        "Regularization": "-5.0",
+        "Test_Accuracy": "0.7456",
+        "index": 0,
+        "rev": "workspace"
+    },
+    {
+        "Regularization": "-3.666666666666667",
+        "Test_Accuracy": "0.7336",
+        "index": 1,
+        "rev": "workspace"
+    },
+    {
+        "Regularization": "-2.3333333333333335",
+        "Test_Accuracy": "0.7232",
+        "index": 2,
+        "rev": "workspace"
+    },
+    {
+        "Regularization": "-1.0",
+        "Test_Accuracy": "0.7288",
+        "index": 3,
+        "rev": "workspace"
+    },
+    {
+        "Regularization": "0.333333333333333",
+        "Test_Accuracy": "0.7336",
+        "index": 4,
+        "rev": "workspace"
+    },
+    {
+        "Regularization": "1.666666666666666",
+        "Test_Accuracy": "0.188",
+        "index": 5,
+        "rev": "workspace"
+    },
+    {
+        "Regularization": "3.0",
+        "Test_Accuracy": "0.188",
+        "index": 6,
+        "rev": "workspace"
+    },
+    {
+        "Regularization": "-5.0",
+        "Test Accuracy": "0.672",
+        "index": 0,
+        "rev": "master"
+    },
+    {
+        "Regularization": "-3.666666666666667",
+        "Test Accuracy": "0.6496",
+        "index": 1,
+        "rev": "master"
+    },
+    {
+        "Regularization": "-2.3333333333333335",
+        "Test Accuracy": "0.6584",
+        "index": 2,
+        "rev": "master"
+    },
+    {
+        "Regularization": "-1.0",
+        "Test Accuracy": "0.6808",
+        "index": 3,
+        "rev": "master"
+    },
+    {
+        "Regularization": "0.333333333333333",
+        "Test Accuracy": "0.6864",
+        "index": 4,
+        "rev": "master"
+    },
+    {
+        "Regularization": "1.666666666666666",
+        "Test Accuracy": "0.4912",
+        "index": 5,
+        "rev": "master"
+    },
+    {
+        "Regularization": "3.0",
+        "Test Accuracy": "0.188",
+        "index": 6,
+        "rev": "master"
+    }
+]
+    },
+    "title": "",
+    "mark": {
+        "type": "line"
+    },
+    "encoding": {
+        "x": {
+            "field": "index",
+            "type": "quantitative",
+            "title": "<DVC_METRIC_X_TITLE>"
+        },
+        "y": {
+            "field": "Test_Accuracy",
+            "type": "quantitative",
+            "title": "<DVC_METRIC_Y_TITLE>",
+            "scale": {
+                "zero": false
+            }
+        },
+        "color": {
+            "field": "rev",
+            "type": "nominal"
+        }
+    }
+}
+;
+    vegaEmbed('#plot0', spec);
+</script>
+</body>
+</html>
